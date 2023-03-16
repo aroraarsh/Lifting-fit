@@ -5,30 +5,30 @@ import { auth } from "../utils/firebase"
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
-const Loginpage = () => {
+const Logpage = () => {
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
     const [user, loading] = useAuthState(auth);
-  
+
     const GoogleLogin = async () => {
-      try {
-        auth.setPersistence('local')
-        auth.onAuthStateChanged(user => {
-          if (user) { 
-            user.getIdToken().then(idToken => {
-              localStorage.setItem('idToken', idToken)
-              localStorage.setItem('user', user)
+        try {
+            auth.setPersistence('local')
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    user.getIdToken().then(idToken => {
+                        localStorage.setItem('idToken', idToken)
+                        localStorage.setItem('user', user)
+                    })
+                }
             })
-          }
-        })
-        const result = await signInWithPopup(auth, googleProvider);
-        console.log(result.user);
-        navigate("/reviewList");
-      } catch (error) {
-        console.log(error);
-      }
-      navigate("/Homepage")
-      
+            const result = await signInWithPopup(auth, googleProvider);
+            console.log(result.user);
+            navigate("/reviewList");
+        } catch (error) {
+            console.log(error);
+        }
+        navigate("/Homepage")
+
     };
 
     // function homelog() {
@@ -116,11 +116,10 @@ const Loginpage = () => {
                 <div className="mx-auto max-w-2xl pt-20 sm:py-48 lg:py-56">
                     <div className="text-center">
                         <h1 className="text-4xl font-bold tracking-normal text-gray-900 sm:text-6xl">
-                            Make your Workouts Better
+                            Welcome to Lifting fit
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            An intuitive, professional platform empowering individuals to efficiently design, monitor, and tailor fitness regimens for enhanced performance and well-being.
-                        </p>
+                            "Get fit and stay motivated! Log in now to access personalized workout plans and track your progress towards a healthier you."                     </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             {/* <a
                                 onClick={workClick}
@@ -188,4 +187,4 @@ const Loginpage = () => {
     )
 }
 
-export default Loginpage
+export default Logpage
