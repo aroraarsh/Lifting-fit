@@ -9,12 +9,13 @@ import Contact from './components/Contact';
 function App() {
   return (
     <>
-      <Navbar />
+      
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route index element={<Homepage/>} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/WorkoutGenerator" element={<WorkoutGenerator />} />
-          {/* <Route path="/Homepage" element={<Homepage />} /> */}
           < Route path="/Contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
@@ -23,5 +24,5 @@ function App() {
   );
 }
 
-
+ 
 export default App;
