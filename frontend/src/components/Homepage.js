@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../utils/firebase"
+import { useAuthState } from "react-firebase-hooks/auth";
 
 
 const Homepage = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const navigate = useNavigate();
+    const googleProvider = new GoogleAuthProvider();
+    const [user, loading] = useAuthState(auth);
+  
 
     function workClick() {
         navigate('/workoutgenerator');
@@ -14,6 +20,9 @@ const Homepage = () => {
         navigate('/calories');
     }
 
+    if(!user){
+        navigate("/");
+    }
 
     return (
         <div className="bg-white" style={{ height: "100vh", overflowY: "scroll" }}>

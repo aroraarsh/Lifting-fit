@@ -1,5 +1,8 @@
 import React from 'react';
 import { GrInstagram } from 'react-icons/gr';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const handleInstagramClick = () => {
   window.open("https://www.instagram.com/lifting.fit", "_blank");

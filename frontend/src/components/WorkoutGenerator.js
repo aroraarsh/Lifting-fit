@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const WorkoutGenerator = () => {
@@ -9,6 +14,10 @@ const WorkoutGenerator = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [workoutLength, setWorkoutLength] = useState(60);
+    const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate();
+
+
 
     const handleMuscleGroupChange = (event) => {
         const { value } = event.target;
@@ -30,8 +39,7 @@ const WorkoutGenerator = () => {
         setWorkout(''); // clear the previous workout
         // rest of the function
         const gpt3Endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-        const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles ${hasGymAccess ? 'with gym access' : 'without gym access'
-            }.`;
+        const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles and add && between each excercise returned ${hasGymAccess ? 'with gym access' : 'without gym access' }.`;
         const data = {
             prompt,
             max_tokens: 512,
@@ -46,7 +54,7 @@ const WorkoutGenerator = () => {
         try {
             const response = await axios.post(gpt3Endpoint, data, { headers });
             const workoutPlan = response.data.choices[0].text;
-            const formattedWorkoutPlan = workoutPlan.replace(/([0-20]+\.\s)/g, "\n$1"); // add line breaks before each numbered exercise
+            const formattedWorkoutPlan = workoutPlan.replaceAll("&&",'\n\n'); // add line breaks before each numbered exercise
             setWorkout(formattedWorkoutPlan);
             console.log('response:', formattedWorkoutPlan);
         } catch (error) {
@@ -58,105 +66,110 @@ const WorkoutGenerator = () => {
         }
     };
 
+    if (!user) {
+        navigate("/");
+    }
+
     return (
 
         <div className="max-w-2xl mx-auto p-6" style={{ height: "160vh", overflowY: "scroll" }}>
             <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-                    <svg
-                        className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
-                        viewBox="0 0 1155 678"
-                    >
-                        <path
-                            fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)"
-                            fillOpacity=".3"
-                            d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
-                        />
-                        <defs>
-                            <linearGradient
-                                id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
-                                x1="1455.49"
-                                x2="-78.208"
-                                y1="30.177"  // Adjusted value
-                                y2="304.645" // Adjusted value
-                                gradientUnits="userSpaceOnUse"
-                            >
-                                <stop stopColor="#008080">
-                                    <animate
-                                        attributeName="offset"
-                                        values="0; 9"
-                                        dur="4s"
-                                        repeatCount="indefinite"
-                                    />
-                                </stop>
-                                <stop offset="1" stopColor="#008080">
-                                    <animate
-                                        attributeName="offset"
-                                        values="0; 9"
-                                        dur="4s"
-                                        repeatCount="indefinite"
-                                    />
-                                </stop>
-                            </linearGradient>
-                            <linearGradient
-                                id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
-                                x1="3455.49"
-                                x2="-78.208"
-                                y1="30.177"  // Adjusted value
-                                y2="304.645" // Adjusted value
-                                gradientUnits="userSpaceOnUse"
-                            >
-                                <stop stopColor="#007070">
-                                    <animate
-                                        attributeName="offset"
-                                        values="0; 4"
-                                        dur="4s"
-                                        repeatCount="indefinite"
-                                    />
-                                </stop>
-                                <stop offset="1" stopColor="#007070">
-                                    <animate
-                                        attributeName="offset"
-                                        values="0; 4"
-                                        dur="4s"
-                                        repeatCount="indefinite"
-                                    />
-                                </stop>
-                            </linearGradient>
+                <svg
+                    className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
+                    viewBox="0 0 1155 678"
+                >
+                    <path
+                        fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)"
+                        fillOpacity=".3"
+                        d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
+                    />
+                    <defs>
+                        <linearGradient
+                            id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
+                            x1="1455.49"
+                            x2="-78.208"
+                            y1="30.177"  // Adjusted value
+                            y2="304.645" // Adjusted value
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stopColor="#008080">
+                                <animate
+                                    attributeName="offset"
+                                    values="0; 9"
+                                    dur="4s"
+                                    repeatCount="indefinite"
+                                />
+                            </stop>
+                            <stop offset="1" stopColor="#008080">
+                                <animate
+                                    attributeName="offset"
+                                    values="0; 9"
+                                    dur="4s"
+                                    repeatCount="indefinite"
+                                />
+                            </stop>
+                        </linearGradient>
+                        <linearGradient
+                            id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
+                            x1="3455.49"
+                            x2="-78.208"
+                            y1="30.177"  // Adjusted value
+                            y2="304.645" // Adjusted value
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stopColor="#007070">
+                                <animate
+                                    attributeName="offset"
+                                    values="0; 4"
+                                    dur="4s"
+                                    repeatCount="indefinite"
+                                />
+                            </stop>
+                            <stop offset="1" stopColor="#007070">
+                                <animate
+                                    attributeName="offset"
+                                    values="0; 4"
+                                    dur="4s"
+                                    repeatCount="indefinite"
+                                />
+                            </stop>
+                        </linearGradient>
 
-                        </defs>
-                    </svg>
-                </div>
-            <h2 className="text-2xl font-bold mb-6">Workout Generator</h2>
+                    </defs>
+                </svg>
+            </div>
+            <h2 className="text-2xl font-bold mb-6 text-center">Workout Generator</h2>
             <form className="mb-6">
-                <label className="block mb-2">
+                <label className="block mb-2 font-bold text-center">
                     Select muscle groups:
-                    <div className="mt-2">
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                    <div className="flex flex-wrap justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Chest" onChange={handleMuscleGroupChange} className="mr-2" />
                             Chest
                         </label>
-
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Back" onChange={handleMuscleGroupChange} className="mr-2" />
                             Back
                         </label>
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Legs" onChange={handleMuscleGroupChange} className="mr-2" />
                             Legs
                         </label>
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                    </div>
+                    <div className="flex flex-wrap justify-center">
+                    <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Biceps" onChange={handleMuscleGroupChange} className="mr-2" />
                             Biceps
                         </label>
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Triceps" onChange={handleMuscleGroupChange} className="mr-2" />
                             Triceps
                         </label>
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Shoulders" onChange={handleMuscleGroupChange} className="mr-2" />
                             Shoulders
                         </label>
-                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded flex justify-center">
+                        <label className="inline-block mr-4 py-2 mt-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded border-2 border-teal-600 flex justify-center focus:bg-teal-500 active:bg-teal-600">
                             <input type="checkbox" value="Abs" onChange={handleMuscleGroupChange} className="mr-2" />
                             Abs
                         </label>
@@ -164,8 +177,8 @@ const WorkoutGenerator = () => {
                 </label>
 
                 <div className="flex justify-center">
-                    <div className="border border-gray-400 rounded-md p-4 mt-2 mb-2">
-                        <label className="block mb-2">
+                <div className="border-teal-500 rounded-md p-4 mt-2 mb-2">
+                        <label className="block mb-2 rounded">
                             <span className="text-gray-700 font-medium text-lg">Do you have access to a gym?</span>
                             <div className="mt-2">
                                 <div className="text-center">
@@ -239,7 +252,7 @@ const WorkoutGenerator = () => {
                     <button
                         type="button"
                         onClick={handleGenerateWorkout}
-                        className="py-2 px-4 bg-teal-600 hover:bg-teal-800 text-white font-bold rounded"
+                        className="py-2 px-4 mt-4 bg-teal-600 hover:bg-teal-800 text-white font-bold rounded"
                     >
                         Generate Workout
                     </button>

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Calorie = () => {
@@ -14,6 +19,10 @@ const Calorie = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isValidForm, setIsValidForm] = useState(false);
+    const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate();
+
+
 
     const handleGenerateCalorieGoal = async () => {
         setIsLoading(true);
@@ -44,6 +53,10 @@ const Calorie = () => {
             setIsLoading(false);
         }
     };
+
+    if(!user){
+        navigate("/");
+    }
 
     return (
         <div className="max-w-2xl mx-auto p-6" style={{ height: "150vh", overflowY: "scroll", }}>
