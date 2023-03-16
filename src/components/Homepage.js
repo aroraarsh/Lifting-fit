@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom';
+
 
 const navigation = [
     { name: 'Product', href: '#' },
@@ -11,9 +13,14 @@ const navigation = [
 
 const Homepage = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const navigate = useNavigate();
+    function handleClick() {
+        navigate('/workoutgenerator');
+      }
+
 
     return (
-        <div className="bg-white">
+        <div className="bg-white" style={{ height: "100vh", overflowY: "scroll" }}>
 
             <div className="relative isolate px-6 pt-1 lg:px-8">
                 <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -38,12 +45,37 @@ const Homepage = () => {
                                 <stop stopColor="#008080">
                                     <animate
                                         attributeName="offset"
-                                        values="0; 4"
+                                        values="0; 9"
                                         dur="4s"
                                         repeatCount="indefinite"
                                     />
                                 </stop>
                                 <stop offset="1" stopColor="#008080">
+                                    <animate
+                                        attributeName="offset"
+                                        values="0; 9"
+                                        dur="4s"
+                                        repeatCount="indefinite"
+                                    />
+                                </stop>
+                            </linearGradient>
+                            <linearGradient
+                                id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
+                                x1="3455.49"
+                                x2="-78.208"
+                                y1="30.177"  // Adjusted value
+                                y2="304.645" // Adjusted value
+                                gradientUnits="userSpaceOnUse"
+                            >
+                                <stop stopColor="#007070">
+                                    <animate
+                                        attributeName="offset"
+                                        values="0; 4"
+                                        dur="4s"
+                                        repeatCount="indefinite"
+                                    />
+                                </stop>
+                                <stop offset="1" stopColor="#007070">
                                     <animate
                                         attributeName="offset"
                                         values="0; 4"
@@ -57,15 +89,6 @@ const Homepage = () => {
                     </svg>
                 </div>
                 <div className="mx-auto max-w-2xl pt-20 sm:py-48 lg:py-56">
-                    <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                            Announcing our next round of funding.{' '}
-                            <a href="#" className="font-semibold text-teal-600">
-                                <span className="absolute inset-0" aria-hidden="true" />
-                                Read more <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
                     <div className="text-center">
                         <h1 className="text-4xl font-bold tracking-normal text-gray-900 sm:text-6xl">
                             Make your Workouts Better
@@ -75,10 +98,10 @@ const Homepage = () => {
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <a
-                                href="/WorkoutGenerator"
+                                onClick={handleClick}
                                 className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Get started
+                                Get started 
                             </a>
                         </div>
                     </div>

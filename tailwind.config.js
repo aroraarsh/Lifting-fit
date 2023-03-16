@@ -6,7 +6,6 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        'hover-pink': '#BC61F5',
       },
     },
   },

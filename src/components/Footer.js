@@ -8,7 +8,7 @@ const handleContactClick = () => {
     window.open("https://forms.gle/6pMybevbUf1HnvQK6", "_blank");
 }
 const Footer = () => (
-  <footer className="footer bg-teal-600 text-white p-10 pb-10 flex justify-between items-center">
+  <footer className="footer bg-teal-600 text-white p-5 pb-5 flex justify-between items-center">
     <div className="contact">
   {/* <h3>Contact Us</h3> */}
  <h3><a href="\" onClick={handleContactClick}>Contact us</a></h3> 
