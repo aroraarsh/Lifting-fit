@@ -60,7 +60,7 @@ const WorkoutGenerator = () => {
 
     return (
 
-        <div className="max-w-2xl mx-auto p-6" style={{ height: "150vh", overflowY: "scroll" }}>
+        <div className="max-w-2xl mx-auto p-6" style={{ height: "160vh", overflowY: "scroll" }}>
             <h2 className="text-2xl font-bold mb-6">Workout Generator</h2>
             <form className="mb-6">
                 <label className="block mb-2">
