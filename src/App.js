@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import WorkoutGenerator from './components/WorkoutGenerator';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './components/Contact';
+import Calorie from './components/Calorie';
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
           <Route index element={<Homepage/>} />
           <Route path="/" element={<Homepage />} />
           <Route path="/WorkoutGenerator" element={<WorkoutGenerator />} />
+          <Route path="/calories" element={<Calorie />} />
           < Route path="/Contact" element={<Contact />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
+      
     </>
   );
 }

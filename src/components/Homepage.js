@@ -6,9 +6,13 @@ const Homepage = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const navigate = useNavigate();
 
-    function handleClick() {
+    function workClick() {
         navigate('/workoutgenerator');
-      }
+    }
+
+    function caloriesClick() {
+        navigate('/calories');
+    }
 
 
     return (
@@ -90,12 +94,19 @@ const Homepage = () => {
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <a
-                                onClick={handleClick}
+                                onClick={workClick}
                                 className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Get started 
+                                Workout Generator
+                            </a>
+                            <a
+                                onClick={caloriesClick}
+                                className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Calories Estimator
                             </a>
                         </div>
+
                     </div>
                 </div>
                 <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
