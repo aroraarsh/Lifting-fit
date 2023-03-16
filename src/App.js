@@ -12,9 +12,9 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route index element={<Homepage />} />
+          <Route index element={<Homepage/>} />
           <Route path="/WorkoutGenerator" element={<WorkoutGenerator />} />
-          <Route path="/Homepage" element={<Homepage />} />
+          {/* <Route path="/Homepage" element={<Homepage />} /> */}
           < Route path="/Contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
