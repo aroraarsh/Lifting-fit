@@ -22,10 +22,8 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-      
     </>
   );
 }
 
- 
 export default App;
