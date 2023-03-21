@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './components/Contact';
 import Calorie from './components/Calorie';
 import Logpage from './components/Logpage';
+import OneRepMaxCalculator from './components/OneRepMaxCalculator';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route index element = {<Logpage />} />
           <Route path="/Homepage" element={<Homepage />} />
           <Route path="/WorkoutGenerator" element={<WorkoutGenerator />} />
+          <Route path ="/OnerepMaxCalculator" element={<OneRepMaxCalculator />} />
           <Route path="/calories" element={<Calorie />} />
           <Route path="/Contact" element={<Contact />} />
         </Routes>

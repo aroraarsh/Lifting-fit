@@ -20,6 +20,10 @@ const Homepage = () => {
         navigate('/calories');
     }
 
+    function repMac() {
+        navigate('/OnerepMaxCalculator');
+    }
+
     if(!user){
         navigate("/");
     }
@@ -113,6 +117,12 @@ const Homepage = () => {
                                 className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Calories Estimator
+                            </a>
+                            <a
+                                onClick={repMac}
+                                className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                One rep Mac Calculator
                             </a>
                         </div>
 
