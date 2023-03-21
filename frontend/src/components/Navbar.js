@@ -33,7 +33,7 @@ const Navbar = () => {
             Lifting fit
           </div>
         </a>
-        {user &&
+        {user ?
           <div className="relative">
             <button onClick={toggleDropdown} className="flex items-center focus:outline-none">
               <span className="text-l font-normal tracking-wider hover:text-teal-300 mr-4">
@@ -51,6 +51,8 @@ const Navbar = () => {
               </div>
             }
           </div>
+          :
+          <div></div>
         }
       </div>
     </nav>
