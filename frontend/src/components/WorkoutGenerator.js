@@ -36,10 +36,10 @@ const WorkoutGenerator = () => {
     const handleGenerateWorkout = async () => {
         setIsLoading(true);
         setErrorMessage('');
-        setWorkout(''); // clear the previous workout
+        setWorkout([]); // set workout to an empty array
         // rest of the function
         const gpt3Endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-        const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles and add && between each excercise returned ${hasGymAccess ? 'with gym access' : 'without gym access' }.`;
+        const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles ${hasGymAccess ? 'with gym access' : 'without gym access' }.`;
         const data = {
             prompt,
             max_tokens: 512,
@@ -50,13 +50,11 @@ const WorkoutGenerator = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
         };
-
+    
         try {
             const response = await axios.post(gpt3Endpoint, data, { headers });
-            const workoutPlan = response.data.choices[0].text;
-            const formattedWorkoutPlan = workoutPlan.replaceAll("&&",'\n\n'); // add line breaks before each numbered exercise
-            setWorkout(formattedWorkoutPlan);
-            console.log('response:', formattedWorkoutPlan);
+            const workoutPlan = response.data.choices[0].text.split('\n'); // split workout plan by newline
+            setWorkout(workoutPlan.map(item => <p>{item}</p>)); // wrap each item in a <p> tag to add line break
         } catch (error) {
             console.error(error);
             console.log(error);
@@ -65,7 +63,8 @@ const WorkoutGenerator = () => {
             setIsLoading(false);
         }
     };
-
+    
+      
     if (!user) {
         navigate("/");
     }

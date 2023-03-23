@@ -21,7 +21,7 @@ const OneRepMaxCalculator = () => {
 }
 
   return (
-    <div className="flex items-center justify-center h-screen max-w-2xl mx-auto p-4 " style={{ height: "120vh", overflowY: "scroll" }}>
+    <div className="flex items-center justify-center h-screen max-w-2xl mx-auto p-4 " style={{ height: "120vh" }}>
     <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
                 <svg
                     className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"

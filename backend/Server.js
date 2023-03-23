@@ -20,11 +20,11 @@ connection.connect((err) => {
 
 app.use(express.json());
 
-app.post('/workout', (req, res) => {
-    const { user, workout } = req.body;
+app.post('/table1', (req, res) => {
+    const { user , email, workout, day } = req.body;
 
-    const sql = 'INSERT INTO Workouts (user, workout) VALUES (?, ?)';
-    const values = [user, workout];
+    const sql = 'INSERT INTO table1 (user, email , workout, day) VALUES (?, ?, ?, ?)';
+    const values = [user,email,  workout, day];
 
     connection.query(sql, values, (err, result) => {
         if (err) {
@@ -39,7 +39,7 @@ app.post('/workout', (req, res) => {
 
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4100;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);
 });

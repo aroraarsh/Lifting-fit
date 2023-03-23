@@ -59,7 +59,7 @@ const Calorie = () => {
     }
 
     return (
-        <div className="max-w-2xl mx-auto p-6" style={{ height: "150vh", overflowY: "scroll", }}>
+        <div className="max-w-2xl mx-auto p-6" style={{ height: "160vh", overflowY: "scroll", }}>
             
             <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
                     <svg
