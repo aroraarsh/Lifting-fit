@@ -28,6 +28,10 @@ const Homepage = () => {
         navigate('/FitnessPlanner');
     }
 
+    function motivate() {
+        navigate('/Motivating');
+    }
+
     if (!user) {
         navigate("/");
     }
@@ -110,34 +114,27 @@ const Homepage = () => {
                             An intuitive, professional platform empowering individuals to efficiently design, monitor, and tailor fitness regimens for enhanced performance and well-being.
                         </p>
                         <div className="mt-10 flex flex-col items-center justify-center md:flex-row md:gap-x-6">
-                            <div className="grid grid-cols-2 gap-6">
-                                <a
-                                    onClick={workClick}
-                                    className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    Workout Generator
-                                </a>
-                                <a
-                                    onClick={caloriesClick}
-                                    className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    Calories Estimator
-                                </a>
+                            <div className="flex flex-col md:flex-row">
+                                <div className="flex flex-wrap justify-center gap-4">
+                                    <a onClick={workClick} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Workout Generator
+                                    </a>
+                                    <a onClick={caloriesClick} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Calories Estimator
+                                    </a>
+                                    <a onClick={repMac} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        One rep Max Calculator
+                                    </a>
+                                    <a onClick={fitplan} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Fitness Planner
+                                    </a>
+                                    <a onClick={motivate} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Motivation
+                                    </a>
+                                </div>
+
                             </div>
-                            <div className="grid grid-cols-2 gap-6 mt-6 md:mt-0">
-                                <a
-                                    onClick={repMac}
-                                    className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    One rep Max Calculator
-                                </a>
-                                <a
-                                    onClick={fitplan}
-                                    className="rounded-md flex justify-center items-center bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                    >
-                                    Fitness Planner
-                                </a>
-                            </div>
+
                         </div>
 
 
