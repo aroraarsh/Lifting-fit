@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+//import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from 'react-router-dom';
@@ -12,12 +12,12 @@ const WorkoutGenerator = () => {
     const [hasGymAccess, setHasGymAccess] = useState(false);
     const [workout, setWorkout] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [errorMessage, setErrorMessage] = useState('');
     const [workoutLength, setWorkoutLength] = useState(60);
+    // eslint-disable-next-line no-unused-vars
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
-
-
 
     const handleMuscleGroupChange = (event) => {
         const { value } = event.target;
@@ -42,7 +42,7 @@ const WorkoutGenerator = () => {
         const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles ${hasGymAccess ? 'with gym access' : 'without gym access' }.`;
         const data = {
             prompt,
-            max_tokens: 512,
+            max_tokens: 500,
             temperature: 0.5,
             n: 1,
         };

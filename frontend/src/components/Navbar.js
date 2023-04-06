@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <a onClick={handleClick} className="text-2xl font-normal tracking-wider hover:text-teal-300 flex-1 text-left">
           <div className="mx-auto">
-            Lifting fit
+            Lifting Fit
           </div>
         </a>
         {user ?
