@@ -11,6 +11,8 @@ Before running the project, make sure you have the following dependencies instal
 - Node.js
 - NPM (Node Package Manager)
 
+Apologies for the confusion. Here's an updated version of the installation section without the concurrently option:
+
 ## Installation
 
 1. Clone the repository to your local machine:
@@ -25,21 +27,45 @@ Before running the project, make sure you have the following dependencies instal
    cd lifting-fit
    ```
 
-3. Install the dependencies:
+3. Install the frontend dependencies:
 
    ```
+   cd frontend
    npm install
    ```
 
-## Usage
-
-1. Start the development server:
+4. Install the backend dependencies:
 
    ```
+   cd ../backend
+   npm install
+   ```
+
+## Running the Application
+
+### Frontend
+
+1. Start the frontend development server:
+
+   ```
+   cd ../frontend
    npm start
    ```
 
-2. Open your browser and visit `http://localhost:3000` to access the Lifting-Fit application.
+   The frontend server will be running on `http://localhost:3000`.
+
+### Backend
+
+1. Start the backend server:
+
+   ```
+   cd ../backend
+   node server.js
+   ```
+
+   The backend server will be running on the specified port (e.g., `http://localhost:5000`).
+
+Make sure to run both the frontend and backend servers simultaneously to ensure the full functionality of the Lifting-Fit application.
 
 ## Components
 
