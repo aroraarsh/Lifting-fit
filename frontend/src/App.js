@@ -10,6 +10,7 @@ import OneRepMaxCalculator from './components/OneRepMaxCalculator';
 import FitnessPlanner from './components/FitnessPlanner';
 import Motivating from './components/Motivating';
 import Calorie from './components/Calorie';
+import RecipeGenerator from './components/RecipeGenerator';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Homepage" element={<Homepage />} />
           <Route path="/WorkoutGenerator" element={<WorkoutGenerator />} />
           <Route path="/FitnessPlanner" element={<FitnessPlanner />} />
+          <Route path="/Recipegenerator" element={<RecipeGenerator />} />
           <Route path ="/OnerepMaxCalculator" element={<OneRepMaxCalculator />} />
           <Route path="/calories" element={<Calorie />} />
           <Route path="/motivating" element={<Motivating />} />

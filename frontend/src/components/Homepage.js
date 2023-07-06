@@ -32,6 +32,10 @@ const Homepage = () => {
         navigate('/Motivating');
     }
 
+    function food() {
+        navigate('/Recipegenerator');
+    }
+
     if (!user) {
         navigate("/");
     }
@@ -130,6 +134,9 @@ const Homepage = () => {
                                     </a>
                                     <a onClick={motivate} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                         Motivation
+                                    </a>
+                                    <a onClick={food} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Recipe Generator
                                     </a>
                                 </div>
 
