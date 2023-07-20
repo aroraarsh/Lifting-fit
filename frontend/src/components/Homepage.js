@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../utils/firebase"
 import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from './Footer';
 
 
 const Homepage = () => {
@@ -40,11 +41,10 @@ const Homepage = () => {
         navigate("/");
     }
 
-    return (
-        <div className="bg-white" style={{ height: "100vh", overflowY: "scroll" }}>
-
-            <div className="relative isolate px-6 pt-1 lg:px-8">
-                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+    return  (
+        <div className="flex flex-col min-h-screen" style={{ overflowY: 'hidden' }}>
+        <div className="flex-grow relative px-6 py-10 sm:px-8">
+                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-90">
                     <svg
                         className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
                         viewBox="0 0 1155 678"
@@ -129,22 +129,11 @@ const Homepage = () => {
                                     <a onClick={repMac} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                         One rep Max Calculator
                                     </a>
-                                    <a onClick={fitplan} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Fitness Planner
-                                    </a>
-                                    <a onClick={motivate} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Motivation
-                                    </a>
-                                    <a onClick={food} className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Recipe Generator
-                                    </a>
                                 </div>
 
                             </div>
 
                         </div>
-
-
                     </div>
                 </div>
                 <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

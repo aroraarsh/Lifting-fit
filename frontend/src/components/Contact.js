@@ -1,7 +1,4 @@
 import React from 'react';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../utils/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 const Contact = () => {
   const handleContactClick = () => {
