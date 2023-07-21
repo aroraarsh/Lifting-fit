@@ -35,7 +35,7 @@ const WorkoutGenerator = () => {
     setShowPopup(true); // Show the popup immediately
 
     const gpt3Endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-    const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles ${hasGymAccess ? 'with gym access' : 'without gym access'}.`;
+    const prompt = `Generate a ${workoutLength}-minute workout plan in a list and easily readable format for ${muscleGroups.join(', ')} muscles ${hasGymAccess ? 'with gym access' : 'without gym access'}. and explain how to do each`;
     const data = {
       prompt,
       max_tokens: 500,
@@ -303,7 +303,7 @@ const WorkoutGenerator = () => {
             </div>
           </div>
         ) : (
-          <div className="text-lg text-white max-h-64 overflow-y-auto">
+          <div className="text-lg text-white max-h-80 overflow-y-auto">
             {workout}
           </div>
         )}

@@ -19,32 +19,31 @@ const OneRepMaxCalculator = () => {
   if (!user) {
     navigate("/");
   }
-
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-4xl font-bold mb-8 text-teal-600">One Rep Max Calculator</h1>
-        <form>
-          <label className="block mb-4">
-            Weight Lifted (in pounds):
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-96">
+        <h1 className="text-3xl font-bold mb-6 text-teal-600">One Rep Max Calculator</h1>
+        <form className="space-y-4">
+          <div>
+            <label className="block text-gray-600 mb-2">Weight Lifted (in pounds):</label>
             <input
-              className="border border-gray-400 rounded-md py-2 px-4 w-64"
+              className="border border-gray-400 rounded-md py-2 px-4 w-full"
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
             />
-          </label>
-          <label className="block mb-4">
-            Number of Reps:
+          </div>
+          <div>
+            <label className="block text-gray-600 mb-2">Number of Reps:</label>
             <input
-              className="border border-gray-400 rounded-md py-2 px-4 w-64"
+              className="border border-gray-400 rounded-md py-2 px-4 w-full"
               type="number"
               value={reps}
               onChange={(e) => setReps(e.target.value)}
             />
-          </label>
+          </div>
           <button
-            className="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300"
+            className="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300 w-full"
             type="button"
             onClick={calculateOneRepMax}
           >
@@ -52,10 +51,8 @@ const OneRepMaxCalculator = () => {
           </button>
         </form>
         {oneRepMax > 0 && (
-          <div className="mt-8">
-            <p className="text-xl font-bold mb-2">
-              Your estimated one rep max is {oneRepMax} pounds.
-            </p>
+          <div className="mt-6">
+            <p className="text-xl font-bold mb-2">Your estimated one rep max is {oneRepMax} pounds.</p>
           </div>
         )}
       </div>

@@ -9,8 +9,9 @@ import Logpage from './components/Logpage';
 import OneRepMaxCalculator from './components/OneRepMaxCalculator';
 import FitnessPlanner from './components/FitnessPlanner';
 import Motivating from './components/Motivating';
-import Calorie from './components/Calorie';
 import RecipeGenerator from './components/RecipeGenerator';
+import Calorie from './components/Calorie';
+import About from './components/About';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/calories" element={<Calorie />} />
           <Route path="/motivating" element={<Motivating />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>
